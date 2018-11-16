@@ -10,6 +10,9 @@ import scala.concurrent.duration._
 object Main extends App with RequestTimeout {
 
   val config = ConfigFactory.load()
+  val host = config.getString("http.host")
+  val port = config.getInt("http.port")
+
   implicit val system = ActorSystem("testActorSystem")
   val pinger = system.actorOf(Props[Pinger], "pinger")
   val ponger = system.actorOf(Props(classOf[Ponger], pinger), "ponger")
@@ -19,7 +22,7 @@ object Main extends App with RequestTimeout {
 
   val api = new RestApi(system, requestTimeout(config))
 
-  val bindingFuture = Http().bindAndHandle(api.routes, "localhost", 8080)
+  val bindingFuture = Http().bindAndHandle(api.routes, host, port)
 
   system.scheduler.scheduleOnce(500 millis) {
     ponger ! Ping

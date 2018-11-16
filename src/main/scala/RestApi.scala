@@ -42,7 +42,7 @@ class RestApi(system: ActorSystem, timeout: Timeout) extends RandomMessagesApi w
          //POST /save-message
           entity(as[SaveNewMessage]) { nm =>
             onSuccess(saveNewMessage(nm.msg)) {
-              case RandomMessages.MessageSaved(str) => complete(str)
+              case RandomMessages.MessageSaved(str) => complete(MessageSaved(str))
             }
           }
         }
