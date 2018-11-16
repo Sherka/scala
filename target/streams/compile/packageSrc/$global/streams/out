@@ -1,0 +1,13 @@
+[0m[[0m[0minfo[0m] [0m[0mPackaging C:\scala_custom\heroku\someTestingProj\target\scala-2.11\sometestingproj_2.11-0.1-sources.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Pinger.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\scala_custom\heroku\someTestingProj\src\main\scala\Pinger.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\scala_custom\heroku\someTestingProj\src\main\scala\Main.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RestApi.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\scala_custom\heroku\someTestingProj\src\main\scala\RestApi.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Ponger.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\scala_custom\heroku\someTestingProj\src\main\scala\Ponger.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RandomMessages.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\scala_custom\heroku\someTestingProj\src\main\scala\RandomMessages.scala[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m
