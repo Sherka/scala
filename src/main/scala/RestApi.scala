@@ -1,8 +1,4 @@
-import java.util.concurrent.Future
-
-import akka.Done
 import akka.actor.{ActorRef, ActorSystem}
-import akka.http.scaladsl.model._
 import akka.http.scaladsl.server
 import akka.http.scaladsl.server.Directives._
 import akka.pattern.ask
@@ -21,9 +17,10 @@ class RestApi(system: ActorSystem, timeout: Timeout) extends RandomMessagesApi w
   implicit val listOfMessagesFormat = jsonFormat1(ListOfMessages)
   implicit val messageSavedFormat = jsonFormat1(MessageSaved)
   implicit val saveNewMessageFormat = jsonFormat1(SaveNewMessage)
+  implicit val getStreamedMessagesFormat = jsonFormat1(GetStreamedMessages)
 
   def createRandomMessages = system.actorOf(RandomMessages.props, "RandomMessages")
-  def routes: server.Route = getAllMsgs ~ saveNewMsg
+  def routes: server.Route = getAllMsgs ~ saveNewMsg ~ getReverce
 
   def getAllMsgs = {
     path("get-messages") {
@@ -35,6 +32,17 @@ class RestApi(system: ActorSystem, timeout: Timeout) extends RandomMessagesApi w
         }
       }
     }
+
+  def getReverce = {
+    get {
+      path("get-reverce") {
+        //GET /get-reverce
+        onSuccess(getRevercedMessages()) {
+          list => complete(list)
+        }
+      }
+    }
+  }
 
   def saveNewMsg = {
      post {
@@ -48,6 +56,7 @@ class RestApi(system: ActorSystem, timeout: Timeout) extends RandomMessagesApi w
         }
      }
   }
+
 }
 
 trait RandomMessagesApi {
@@ -64,6 +73,10 @@ trait RandomMessagesApi {
 
   def saveNewMessage(msg: String) = {
     randomMessages.ask(SaveNewMessage(msg)).mapTo[MessageSaved]
+  }
+
+  def getRevercedMessages() = {
+    randomMessages.ask(GetStreamedMessages).mapTo[GetStreamedMessages]
   }
 
 }
